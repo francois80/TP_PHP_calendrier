@@ -20,7 +20,7 @@ if (isset($_POST["mois"]) && isset($_POST["annee"])) {
     }
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
@@ -92,10 +92,9 @@ if (isset($_POST["mois"]) && isset($_POST["annee"])) {
                             $day1 = getdate($date1);
                             $dayWeek = date("l", $date1);
                             $dayMonth = date("F", $date1);
-                            //var_dump($day1);
-                            ?>
+                           ?>
                             <div class="card text-white bg-primary mb-3 d-inline-block" style="max-width: 10rem; max-height: 8rem;">
-                                <div class="card-header"><?= $jourSemaine[$dayWeek] ?> <?= $i ?> <?= $monthFR[$dayMonth] ?></div>                
+                                <div class="card-header" id="day<?= $i ?>" name="day<?= $i ?>"><?= $jourSemaine[$dayWeek] ?> <?= $i ?> <?= $monthFR[$dayMonth] ?></div>                
                             </div>
                             <?php
                         }
