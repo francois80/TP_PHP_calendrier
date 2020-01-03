@@ -9,7 +9,6 @@ $envoi = false; //permet de savoir si envoi du formulaire pour affichage du cale
 if (isset($_POST["mois"]) && isset($_POST["annee"])) {
     $monthChoice = $_POST["mois"]; //form mois
     $yearChoice = $_POST["annee"]; // form annee
-    $timeNow = time(); //timsestamps du jour
     //si les variables qui réccupèrent le mois et l'annéé ne sont pas vide on crée la variable date avec le timestamps correspondant
     if ($monthChoice != "" && $yearChoice != "") {
         $envoi = true; //si true affichage du calendrier
@@ -30,6 +29,7 @@ if (isset($_POST["mois"]) && isset($_POST["annee"])) {
         <title>Bootstrap 101 Template</title>
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/style.css" >
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -50,7 +50,7 @@ if (isset($_POST["mois"]) && isset($_POST["annee"])) {
                                     <select id="mois" name="mois">
                                         <option value=""> -- Sélection -- </option>
                                         <?php for ($i = 1; $i <= 12; $i++) { ?>
-                                            <option value="<?= $i ?>"><?= $mois[$i] ?> </option>
+                                            <option value="<?= $i ?>" <?php if(isset($_POST["mois"]) && $_POST['mois'] == $mois[$i]){ echo 'selected="selected"';} ?>><?= $mois[$i] ?> </option>
                                             <?php
                                             ;
                                         }
@@ -82,8 +82,7 @@ if (isset($_POST["mois"]) && isset($_POST["annee"])) {
             //affichage du calendrier
             if ($envoi) {
                 ?>
-                <div class="row justify-content-center">
-                    <div class="col-md-12 bg-secondary">
+                
                         <?php
                         for ($i = 1; $i <= $nbDayinMonthChoice; $i++) {
                             $date1 = "";
@@ -93,16 +92,12 @@ if (isset($_POST["mois"]) && isset($_POST["annee"])) {
                             $dayWeek = date("l", $date1);
                             $dayMonth = date("F", $date1);
                            ?>
-                            <div class="card text-white bg-primary mb-3 d-inline-block" style="max-width: 10rem; max-height: 8rem;">
-                                <div class="card-header" id="day<?= $i ?>" name="day<?= $i ?>"><?= $jourSemaine[$dayWeek] ?> <?= $i ?> <?= $monthFR[$dayMonth] ?></div>                
+                            <div class="card text-white bg-primary mb-3 d-inline-block">
+                                <div class="card-header card-show" id="day<?= $i ?>" name="day<?= $i ?>"><?= $jourSemaine[$dayWeek] ?> <?= $i ?> <?= $monthFR[$dayMonth] ?></div>                
                             </div>
                             <?php
                         }
-                        ?>
-                    </div>
-                </div>
-                <?php
-            }
+               }
             ?>
         </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

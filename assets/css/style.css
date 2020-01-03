@@ -1,0 +1,8 @@
+.card-show{
+    display: flex;
+    align-content: space-around;
+    align-items: stretch;
+    border-radius:  30px;
+    width: 150px;
+    height: 100px;
+}
